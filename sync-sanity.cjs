@@ -4,13 +4,28 @@ require('dotenv').config();
 const { createClient } = require('@sanity/client');
 const { toHTML } = require('@portabletext/to-html');
 
-let imageUrlBuilder = require('@sanity/image-url');
-if (typeof imageUrlBuilder !== 'function') {
-  imageUrlBuilder = imageUrlBuilder.default ?? imageUrlBuilder;
+function loadImageUrlBuilder() {
+  let imageUrlBuilder = require('@sanity/image-url');
+
+  for (let i = 0; i < 5 && typeof imageUrlBuilder !== 'function'; i += 1) {
+    imageUrlBuilder =
+      imageUrlBuilder.default ??
+      imageUrlBuilder.imageUrlBuilder ??
+      imageUrlBuilder.urlBuilder ??
+      imageUrlBuilder;
+  }
+
+  if (typeof imageUrlBuilder !== 'function') {
+    throw new TypeError(
+      'Failed to load @sanity/image-url as a function. Export keys: ' +
+        Object.keys(imageUrlBuilder || {}).join(', ')
+    );
+  }
+
+  return imageUrlBuilder;
 }
-if (typeof imageUrlBuilder !== 'function') {
-  throw new Error('Failed to load @sanity/image-url as a function');
-}
+
+const imageUrlBuilder = loadImageUrlBuilder();
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
@@ -30,10 +45,16 @@ const myPortableTextComponents = {
 };
 
 async function sync() {
+  for (const key of ['SANITY_PROJECT_ID', 'SANITY_DATASET', 'SANITY_API_VERSION']) {
+    if (!process.env[key]) {
+      throw new Error('Missing required environment variable: ' + key);
+    }
+  }
+
   const query = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
   const posts = await client.fetch(query);
 
-  const blogDir = path.join(__dirname, 'src', 'content', 'blog');
+  const blogDir = path.join(__dirname, 'src', 'content', 'posts', 'sanity');
   if (fs.existsSync(blogDir)) fs.rmSync(blogDir, { recursive: true, force: true });
   fs.mkdirSync(blogDir, { recursive: true });
 
@@ -64,4 +85,7 @@ async function sync() {
   console.log('Synced ' + posts.length + ' posts from Sanity.');
 }
 
-sync().catch(console.error);
+sync().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
