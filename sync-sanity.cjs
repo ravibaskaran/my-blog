@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const { createClient } = require('@sanity/client');
 const { toHTML } = require('@portabletext/to-html');
-const imageUrlBuilder = require('@sanity/image-url');
+const imageUrlBuilder = require('@sanity/image-url').default ?? require('@sanity/image-url');
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
