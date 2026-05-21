@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'my-blog-studio',
+  title: 'Cranium to Chops Studio',
 
   projectId: 'bpsjbmso',
   dataset: 'production',

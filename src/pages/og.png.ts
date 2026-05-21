@@ -6,19 +6,20 @@ import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
 import config from "@/config";
 
 export const GET: APIRoute = async context => {
-  const fonts = fontData["--font-google-sans-code"];
-  const regularFontPath = getFontPathByWeight(fonts, 400);
-  const boldFontPath = getFontPathByWeight(fonts, 700);
+  const headingFonts = fontData["--font-fraunces"];
+  const bodyFonts = fontData["--font-literata"];
+  const headingFontPath = getFontPathByWeight(headingFonts, 300);
+  const bodyFontPath = getFontPathByWeight(bodyFonts, 400);
 
-  if (regularFontPath === undefined || boldFontPath === undefined) {
+  if (headingFontPath === undefined || bodyFontPath === undefined) {
     throw new Error("Cannot find the font path.");
   }
 
-  const [regularData, boldData] = await Promise.all([
-    fetch(experimental_getFontFileURL(regularFontPath, context.url)).then(res =>
+  const [headingData, bodyData] = await Promise.all([
+    fetch(experimental_getFontFileURL(headingFontPath, context.url)).then(res =>
       res.arrayBuffer()
     ),
-    fetch(experimental_getFontFileURL(boldFontPath, context.url)).then(res =>
+    fetch(experimental_getFontFileURL(bodyFontPath, context.url)).then(res =>
       res.arrayBuffer()
     ),
   ]);
@@ -28,13 +29,13 @@ export const GET: APIRoute = async context => {
       type: "div",
       props: {
         style: {
-          background: "#fefbfb",
+          background: "#F5F1E6",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "Google Sans Code",
+          fontFamily: "Literata",
         },
         children: [
           {
@@ -44,10 +45,10 @@ export const GET: APIRoute = async context => {
                 position: "absolute",
                 top: "-1px",
                 right: "-1px",
-                border: "4px solid #000",
-                background: "#ecebeb",
-                opacity: "0.9",
-                borderRadius: "4px",
+                border: "1px solid #DDD4C0",
+                background: "#E8DFC5",
+                opacity: "0.7",
+                borderRadius: "16px",
                 display: "flex",
                 justifyContent: "center",
                 margin: "2.5rem",
@@ -60,9 +61,9 @@ export const GET: APIRoute = async context => {
             type: "div",
             props: {
               style: {
-                border: "4px solid #000",
-                background: "#fefbfb",
-                borderRadius: "4px",
+                border: "1px solid #DDD4C0",
+                background: "#FCFAF3",
+                borderRadius: "16px",
                 display: "flex",
                 justifyContent: "center",
                 margin: "2rem",
@@ -98,14 +99,19 @@ export const GET: APIRoute = async context => {
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 72, fontWeight: "bold" },
+                              style: {
+                                color: "#24261E",
+                                fontFamily: "Fraunces",
+                                fontSize: 76,
+                                fontWeight: 300,
+                              },
                               children: config.site.title,
                             },
                           },
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 28 },
+                              style: { color: "#6E6B58", fontSize: 28 },
                               children: config.site.description,
                             },
                           },
@@ -120,12 +126,13 @@ export const GET: APIRoute = async context => {
                           justifyContent: "flex-end",
                           width: "100%",
                           marginBottom: "8px",
+                          color: "#9C7A24",
                           fontSize: 28,
                         },
                         children: {
                           type: "span",
                           props: {
-                            style: { overflow: "hidden", fontWeight: "bold" },
+                            style: { overflow: "hidden", fontWeight: 600 },
                             children: new URL(config.site.url).hostname,
                           },
                         },
@@ -145,15 +152,15 @@ export const GET: APIRoute = async context => {
       embedFont: true,
       fonts: [
         {
-          name: "Google Sans Code",
-          data: regularData,
-          weight: 400,
+          name: "Fraunces",
+          data: headingData,
+          weight: 300,
           style: "normal",
         },
         {
-          name: "Google Sans Code",
-          data: boldData,
-          weight: 700,
+          name: "Literata",
+          data: bodyData,
+          weight: 400,
           style: "normal",
         },
       ],
