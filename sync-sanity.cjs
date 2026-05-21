@@ -3,7 +3,14 @@ const path = require('path');
 require('dotenv').config();
 const { createClient } = require('@sanity/client');
 const { toHTML } = require('@portabletext/to-html');
-const imageUrlBuilder = require('@sanity/image-url');
+
+let imageUrlBuilder = require('@sanity/image-url');
+if (typeof imageUrlBuilder !== 'function') {
+  imageUrlBuilder = imageUrlBuilder.default ?? imageUrlBuilder;
+}
+if (typeof imageUrlBuilder !== 'function') {
+  throw new Error('Failed to load @sanity/image-url as a function');
+}
 
 const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
@@ -12,19 +19,20 @@ const client = createClient({
   useCdn: true,
 });
 
-const imageUrlBuilder = require('@sanity/image-url');
+const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 const myPortableTextComponents = {
   types: {
-    image: ({ value }) => '<img src="' + urlFor(value).url() + '" alt="' + (value.alt || ' ') + '" />',
+    image: ({ value }) =>
+      '<img src="' + urlFor(value).url() + '" alt="' + (value.alt || ' ') + '" />',
   },
 };
 
 async function sync() {
   const query = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
   const posts = await client.fetch(query);
-  
+
   const blogDir = path.join(__dirname, 'src', 'content', 'blog');
   if (fs.existsSync(blogDir)) fs.rmSync(blogDir, { recursive: true, force: true });
   fs.mkdirSync(blogDir, { recursive: true });
@@ -33,7 +41,7 @@ async function sync() {
     const htmlBody = toHTML(post.body || [], { components: myPortableTextComponents });
     const tagsStr = (post.tags || []).map(t => '"' + t + '"').join(', ');
     const ogImg = post.ogImage ? urlFor(post.ogImage).url() : '';
-    
+
     const lines = [
       '---',
       'title: "' + post.title + '"',
@@ -47,7 +55,7 @@ async function sync() {
       'ogImage: "' + ogImg + '"',
       '---',
       '',
-      htmlBody
+      htmlBody,
     ];
 
     const frontmatter = lines.join('\n');
