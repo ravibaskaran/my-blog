@@ -2,6 +2,7 @@
   "name": "my-blog-studio",
   "private": true,
   "version": "1.0.0",
+  "packageManager": "pnpm@10.11.1",
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {

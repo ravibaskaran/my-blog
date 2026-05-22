@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard"],
+  "timezone": "Asia/Kolkata",
+  "schedule": ["before 8am on monday"],
+  "labels": ["dependencies"],
+  "prHourlyLimit": 2,
+  "rangeStrategy": "bump",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 8am on monday"]
+  },
+  "packageRules": [
+    {
+      "description": "Automerge low-risk patch updates after CI passes.",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Require dashboard approval for major updates.",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true,
+      "automerge": false
+    },
+    {
+      "description": "Review Astro updates together.",
+      "matchPackageNames": ["astro", "/^@astrojs\\//"],
+      "groupName": "Astro packages",
+      "automerge": false
+    },
+    {
+      "description": "Review Sanity updates together.",
+      "matchPackageNames": ["sanity", "/^@sanity\\//"],
+      "groupName": "Sanity packages",
+      "automerge": false
+    },
+    {
+      "description": "Review Tailwind and Vite updates together because they share the build pipeline.",
+      "matchPackageNames": ["vite", "tailwindcss", "/^@tailwindcss\\//"],
+      "groupName": "Tailwind and Vite packages",
+      "automerge": false
+    },
+    {
+      "description": "Keep GitHub Actions updates separate from app dependencies.",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": false
+    }
+  ]
+}

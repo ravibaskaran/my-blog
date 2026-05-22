@@ -1,50 +1,75 @@
 name: CI
 
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+  workflow_call:
+  workflow_dispatch:
+
 permissions:
   contents: read
 
-on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-  workflow_call:
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
 
 jobs:
-  build:
-    name: Code standards & build
+  web:
+    name: Web build
     runs-on: ubuntu-latest
-    timeout-minutes: 3
-
-    strategy:
-      matrix:
-        node-version: ["24"]
+    timeout-minutes: 10
+    env:
+      SANITY_PROJECT_ID: bpsjbmso
+      SANITY_DATASET: production
+      SANITY_API_VERSION: "2026-05-21"
 
     steps:
-      - name: "☁️ Checkout repository"
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: "📦 Install pnpm"
+      - name: Use Cloudflare Node version
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+          cache: npm
+
+      - name: Use Cloudflare npm version
+        run: npm install --global npm@10.9.2
+
+      - name: Install dependencies
+        run: npm ci --progress=false
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Build
+        run: npm run build
+
+  sanity-studio:
+    name: Sanity Studio build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: sanity-studio
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+
+      - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10.11.1
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: "📦 Install dependencies"
-        run: pnpm install
-
-      - name: "🔎 Lint code"
-        run: pnpm run lint
-
-      - name: "📝 Checking code format"
-        run: pnpm run format:check
-
-      - name: "🚀 Build the project"
+      - name: Build Studio
         run: pnpm run build

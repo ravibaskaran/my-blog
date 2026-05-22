@@ -1,0 +1,94 @@
+name: AstroPaper Upstream Monitor
+
+on:
+  schedule:
+    - cron: "20 3 1 */3 *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-upstream:
+    name: Check AstroPaper upstream
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Open review issue when upstream changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+
+            const baselinePath = ".github/astropaper-upstream-baseline";
+            const baseline = fs.readFileSync(baselinePath, "utf8").trim();
+            const label = "upstream-astropaper";
+
+            const { data: branch } = await github.rest.repos.getBranch({
+              owner: "satnaing",
+              repo: "astro-paper",
+              branch: "main",
+            });
+
+            const upstreamSha = branch.commit.sha;
+            if (upstreamSha === baseline) {
+              core.info(`AstroPaper upstream unchanged at ${upstreamSha}`);
+              return;
+            }
+
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label,
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label,
+                color: "c2a24c",
+                description: "AstroPaper upstream theme review",
+              });
+            }
+
+            const { data: existingIssues } = await github.rest.search.issuesAndPullRequests({
+              q: `repo:${context.repo.owner}/${context.repo.repo} is:issue is:open label:${label}`,
+              per_page: 1,
+            });
+
+            const compareUrl = `https://github.com/satnaing/astro-paper/compare/${baseline}...${upstreamSha}`;
+            const title = "Review AstroPaper upstream changes";
+            const body = [
+              "AstroPaper has changed upstream since this repo's recorded baseline.",
+              "",
+              `Baseline: \`${baseline}\``,
+              `Latest upstream: \`${upstreamSha}\``,
+              `Compare: ${compareUrl}`,
+              "",
+              "Review checklist:",
+              "- Check Astro, Tailwind, and content collection changes.",
+              "- Port only changes that apply to this customized blog.",
+              "- Preserve Cranium to Chops typography, color tokens, and Sanity integration.",
+              "- Run `npm run format:check` and `npm run build`.",
+              `- After review, update \`${baselinePath}\` to \`${upstreamSha}\`.`,
+            ].join("\n");
+
+            if (existingIssues.total_count > 0) {
+              core.info(`Existing ${label} issue is already open.`);
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: [label],
+            });
