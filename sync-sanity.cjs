@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 require('dotenv').config();
 const { createClient } = require('@sanity/client');
 const { toHTML } = require('@portabletext/to-html');
@@ -51,6 +52,10 @@ async function sync() {
     }
   }
 
+  const { resolveLeadImageContent } = await import(
+    pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityLeadImage.js')).href
+  );
+
   const query = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
   const posts = await client.fetch(query);
 
@@ -59,25 +64,36 @@ async function sync() {
   fs.mkdirSync(blogDir, { recursive: true });
 
   for (const post of posts) {
-    const htmlBody = toHTML(post.body || [], { components: myPortableTextComponents });
-    const tagsStr = (post.tags || []).map(t => '"' + t + '"').join(', ');
+    const { leadImageSource, leadImageAlt, body } = resolveLeadImageContent(post);
+    const htmlBody = toHTML(body || [], { components: myPortableTextComponents });
+    const tagsStr = JSON.stringify(post.tags || []);
     const ogImg = post.ogImage ? urlFor(post.ogImage).url() : '';
+    const leadImage = leadImageSource ? urlFor(leadImageSource).url() : '';
 
     const lines = [
       '---',
-      'title: "' + post.title + '"',
-      'description: "' + post.description + '"',
+      'title: ' + JSON.stringify(post.title),
+      'description: ' + JSON.stringify(post.description),
       'pubDatetime: ' + post.pubDatetime,
       'modDatetime: ' + (post.modDatetime || post.pubDatetime),
-      'author: "' + (post.author || 'Admin') + '"',
+      'author: ' + JSON.stringify(post.author || 'Admin'),
       'featured: ' + (post.featured || false),
       'draft: ' + (post.draft || false),
-      'tags: [' + tagsStr + ']',
-      'ogImage: "' + ogImg + '"',
-      '---',
-      '',
-      htmlBody,
+      'tags: ' + tagsStr,
     ];
+
+    if (leadImage) {
+      lines.push('leadImage: ' + JSON.stringify(leadImage));
+      if (leadImageAlt) {
+        lines.push('leadImageAlt: ' + JSON.stringify(leadImageAlt));
+      }
+    }
+
+    if (ogImg) {
+      lines.push('ogImage: ' + JSON.stringify(ogImg));
+    }
+
+    lines.push('---', '', htmlBody);
 
     const frontmatter = lines.join('\n');
     fs.writeFileSync(path.join(blogDir, post.slug.current + '.mdx'), frontmatter, 'utf8');

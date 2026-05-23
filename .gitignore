@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # pagefind
 public/pagefind
+
+# generated Sanity post content
+src/content/posts/sanity/

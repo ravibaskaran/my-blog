@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "node sync-sanity.cjs && astro dev",
     "build": "node sync-sanity.cjs && astro build",
+    "test": "node tests/sanityLeadImage.test.js",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",

@@ -62,6 +62,8 @@ const {
   title,
   description,
   ogImage: initOgImage,
+  leadImage,
+  leadImageAlt,
   canonicalURL,
   pubDatetime,
   modDatetime,
@@ -91,6 +93,11 @@ if (!ogImageUrl && config.features.dynamicOgImage) {
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
+
+const visibleLeadImage =
+  leadImage ??
+  (typeof initOgImage === "string" ? initOgImage : initOgImage?.src);
+const visibleLeadImageAlt = leadImageAlt || title;
 ---
 
 <PostLayout
@@ -130,6 +137,21 @@ const ogImage = ogImageUrl
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
+    {
+      visibleLeadImage && (
+        <figure class="not-prose border-border/70 bg-muted/20 mt-8 overflow-hidden rounded-2xl border">
+          <img
+            src={visibleLeadImage}
+            alt={visibleLeadImageAlt}
+            class="block h-auto w-full"
+            loading="eager"
+            decoding="async"
+            sizes="(min-width: 768px) 768px, 100vw"
+          />
+        </figure>
+      )
+    }
 
     <article
       id="article"
