@@ -64,6 +64,7 @@ const {
   ogImage: initOgImage,
   leadImage,
   leadImageAlt,
+  articleSourceUrl,
   canonicalURL,
   pubDatetime,
   modDatetime,
@@ -98,6 +99,15 @@ const visibleLeadImage =
   leadImage ??
   (typeof initOgImage === "string" ? initOgImage : initOgImage?.src);
 const visibleLeadImageAlt = leadImageAlt || title;
+const articleSourceLabel = articleSourceUrl
+  ? (() => {
+      try {
+        return new URL(articleSourceUrl).hostname.replace(/^www\./, "");
+      } catch {
+        return "Original reference";
+      }
+    })()
+  : "";
 ---
 
 <PostLayout
@@ -163,6 +173,22 @@ const visibleLeadImageAlt = leadImageAlt || title;
     >
       <Content />
     </article>
+
+    {
+      articleSourceUrl && (
+        <p class="text-muted-foreground mt-8 text-sm leading-7">
+          <span class="text-foreground font-medium">Source:</span>{" "}
+          <a
+            href={articleSourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-accent underline underline-offset-4 transition-colors"
+          >
+            {articleSourceLabel}
+          </a>
+        </p>
+      )
+    }
 
     <hr class="my-8 border-dashed" />
 

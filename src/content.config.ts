@@ -19,6 +19,7 @@ const posts = defineCollection({
       leadImage: z.string().optional(),
       leadImageAlt: z.string().optional(),
       ogImage: image().or(z.string()).optional(),
+      articleSourceUrl: z.string().url().optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),

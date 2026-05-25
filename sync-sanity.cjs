@@ -32,7 +32,7 @@ const client = createClient({
   projectId: process.env.SANITY_PROJECT_ID,
   dataset: process.env.SANITY_DATASET,
   apiVersion: process.env.SANITY_API_VERSION,
-  useCdn: true,
+  useCdn: false,
 });
 
 const builder = imageUrlBuilder(client);
@@ -55,50 +55,58 @@ async function sync() {
   const { resolveLeadImageContent } = await import(
     pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityLeadImage.js')).href
   );
+  const { buildSanityArticleMdx } = await import(
+    pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityArticleMdx.js')).href
+  );
 
-  const query = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
-  const posts = await client.fetch(query);
+  const postQuery = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
+  const linkedinQuery = '*[_type == "linkedinArticle" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
+  const [posts, linkedinArticles] = await Promise.all([
+    client.fetch(postQuery),
+    client.fetch(linkedinQuery),
+  ]);
 
-  const blogDir = path.join(__dirname, 'src', 'content', 'posts', 'sanity');
-  if (fs.existsSync(blogDir)) fs.rmSync(blogDir, { recursive: true, force: true });
-  fs.mkdirSync(blogDir, { recursive: true });
+  const generatedDirs = [
+    { dir: path.join(__dirname, 'src', 'content', 'posts', 'sanity'), documents: posts },
+    { dir: path.join(__dirname, 'src', 'content', 'posts', 'linkedin'), documents: linkedinArticles },
+  ];
 
-  for (const post of posts) {
-    const { leadImageSource, leadImageAlt, body } = resolveLeadImageContent(post);
-    const htmlBody = toHTML(body || [], { components: myPortableTextComponents });
-    const tagsStr = JSON.stringify(post.tags || []);
-    const ogImg = post.ogImage ? urlFor(post.ogImage).url() : '';
-    const leadImage = leadImageSource ? urlFor(leadImageSource).url() : '';
+  for (const { dir, documents } of generatedDirs) {
+    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(dir, { recursive: true });
 
-    const lines = [
-      '---',
-      'title: ' + JSON.stringify(post.title),
-      'description: ' + JSON.stringify(post.description),
-      'pubDatetime: ' + post.pubDatetime,
-      'modDatetime: ' + (post.modDatetime || post.pubDatetime),
-      'author: ' + JSON.stringify(post.author || 'Admin'),
-      'featured: ' + (post.featured || false),
-      'draft: ' + (post.draft || false),
-      'tags: ' + tagsStr,
-    ];
-
-    if (leadImage) {
-      lines.push('leadImage: ' + JSON.stringify(leadImage));
-      if (leadImageAlt) {
-        lines.push('leadImageAlt: ' + JSON.stringify(leadImageAlt));
+    for (const document of documents) {
+      if (!document.slug?.current) {
+        throw new Error('Missing slug for ' + document._type);
       }
+
+      const { leadImageSource, leadImageAlt, body } = resolveLeadImageContent(document);
+      const htmlBody = toHTML(body || [], { components: myPortableTextComponents });
+      const leadImage = leadImageSource ? urlFor(leadImageSource).url() : '';
+      const ogImg = document.ogImage ? urlFor(document.ogImage).url() : '';
+
+      const frontmatter = buildSanityArticleMdx(
+        {
+          title: document.title,
+          description: document.description,
+          pubDatetime: document.pubDatetime,
+          modDatetime: document.modDatetime || document.pubDatetime,
+          author: document.author || 'Admin',
+          featured: document.featured || false,
+          draft: document.draft || false,
+          tags: document.tags || [],
+          leadImage,
+          leadImageAlt,
+          ogImage: ogImg,
+          articleSourceUrl: document.articleSourceUrl,
+        },
+        htmlBody
+      );
+
+      fs.writeFileSync(path.join(dir, document.slug.current + '.mdx'), frontmatter, 'utf8');
     }
-
-    if (ogImg) {
-      lines.push('ogImage: ' + JSON.stringify(ogImg));
-    }
-
-    lines.push('---', '', htmlBody);
-
-    const frontmatter = lines.join('\n');
-    fs.writeFileSync(path.join(blogDir, post.slug.current + '.mdx'), frontmatter, 'utf8');
   }
-  console.log('Synced ' + posts.length + ' posts from Sanity.');
+  console.log('Synced ' + posts.length + ' posts and ' + linkedinArticles.length + ' LinkedIn articles from Sanity.');
 }
 
 sync().catch(error => {
