@@ -1,0 +1,100 @@
+E [Error]: tunneling socket could not be established, cause=connect ECONNREFUSED 127.0.0.1:9
+    at ClientRequest.<anonymous> (D:\dev\cloudflare\my-blog\node_modules\get-it\dist\index.cjs:1:17447)
+    at Object.onceWrapper (node:events:623:26)
+    at ClientRequest.emit (node:events:520:35)
+    at ClientRequest.onError (D:\dev\cloudflare\my-blog\node_modules\tunnel-agent\index.js:179:21)
+    at Object.onceWrapper (node:events:623:26)
+    at ClientRequest.emit (node:events:508:28)
+    at emitErrorEvent (node:_http_client:108:11)
+    at Socket.socketErrorListener (node:_http_client:575:5)
+    at Socket.emit (node:events:508:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8) {
+  request: ClientRequest {
+    _events: [Object: null prototype] {
+      response: [Function],
+      socket: [Array],
+      error: [Function: s]
+    },
+    _eventsCount: 3,
+    _maxListeners: undefined,
+    outputData: [ [Object] ],
+    outputSize: 306,
+    writable: true,
+    destroyed: true,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: false,
+    _header: 'GET /v2023-10-01/data/query/production?query=*%5B_type+%3D%3D+%22post%22%5D+%7C+order%28pubDatetime+desc%29&returnQuery=false&perspective=published HTTP/1.1\r\n' +
+      'accept: application/json\r\n' +
+      'user-agent: @sanity/client 7.22.0\r\n' +
+      'accept-encoding: br, gzip, deflate\r\n' +
+      'Host: bpsjbmso.api.sanity.io\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: TunnelingAgent {
+      options: [Object],
+      proxyOptions: [Object],
+      maxSockets: Infinity,
+      requests: [],
+      sockets: [],
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      request: [Function: request],
+      createSocket: [Function: createSecureSocket],
+      defaultPort: 443
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/v2023-10-01/data/query/production?query=*%5B_type+%3D%3D+%22post%22%5D+%7C+order%28pubDatetime+desc%29&returnQuery=false&perspective=published',
+    _ended: false,
+    res: null,
+    aborted: true,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'bpsjbmso.api.sanity.io',
+    protocol: 'https:',
+    timeoutTimer: null,
+    Symbol(shapeMode): false,
+    Symbol(kCapture): false,
+    Symbol(kBytesWritten): 0,
+    Symbol(kNeedDrain): false,
+    Symbol(corked): 0,
+    Symbol(kChunkedBuffer): [],
+    Symbol(kChunkedLength): 0,
+    Symbol(kSocket): null,
+    Symbol(kOutHeaders): [Object: null prototype] {
+      accept: [Array],
+      'user-agent': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    Symbol(errored): null,
+    Symbol(kHighWaterMark): 16384,
+    Symbol(kRejectNonStandardBodyWrites): false,
+    Symbol(kUniqueHeaders): null,
+    Symbol(kError): undefined
+  },
+  code: 'ECONNRESET'
+}

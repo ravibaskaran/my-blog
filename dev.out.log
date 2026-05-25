@@ -1,0 +1,5 @@
+
+> my-blog@0.0.1 dev
+> node sync-sanity.cjs && astro dev --host 127.0.0.1 --port 4321
+
+◇ injected env (3) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
