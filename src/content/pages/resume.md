@@ -7,7 +7,9 @@ description: "Ravi Baskaran's resume."
 
 Chief Product & Technology Officer
 
-Ravi Baskaran is a senior product and technology leader with more than two decades of experience building B2B platforms, cloud services, AI-enabled workflows, and infrastructure products across startups and large enterprises. He has secured 14 patents in core infrastructure and delivered outcomes that include $40M+ in incremental revenue, a 2M+ user cloud ecosystem, and IPO-level operational transformation.
+Chief Product & Technology Officer at Justo. 20+ years building and commercializing B2B products across SaaS, banking, ecommerce, real estate, accounting and telecom.
+
+I have spent over two decades architecting B2B platforms, securing 14 patents in core infrastructure and driving major commercial outcomes like $40M+ in incremental revenue and a 2M+ user cloud ecosystem. Most recently, I anchored an IPO by transforming manual enterprise operations into measurable, AI-driven agentic workflows.
 
 ## Contact
 
@@ -22,8 +24,9 @@ Hands-on Chief Product & Technology Officer at Justo, where technology anchored 
 ## Experience
 
 ### Justo
+
 **Chief Product & Technology Officer**  
-*Jan 2025 to present*
+_Jan 2025 to present_
 
 - Reports to the CEO and leads product, technology, and AI.
 - Moved the business from manual operating processes into an enterprise built around AI.
@@ -33,8 +36,9 @@ Hands-on Chief Product & Technology Officer at Justo, where technology anchored 
 - Internal evidence showed roughly 30% reduction in CAC and a similar lift in prospect-to-customer conversion.
 
 ### Algonomy
+
 **Director of Products**  
-*Feb 2022 to Jan 2025*
+_Feb 2022 to Jan 2025_
 
 - Led product strategy and commercialization for Find & Discover in retail personalization.
 - Hired across the stack from senior software engineer to VP Engineering and Director of Products.
@@ -43,8 +47,9 @@ Hands-on Chief Product & Technology Officer at Justo, where technology anchored 
 - Grew Find & Discover into a $2M ARR business and positioned it as the #2 credible player in personalized retail search.
 
 ### Tally Solutions
+
 **Product Director**  
-*Nov 2017 to Oct 2020*
+_Nov 2017 to Oct 2020_
 
 - Led product strategy and value creation for cloud, GST, and banking services on one of India's most widely used SME accounting platforms.
 - Created and launched Tally GST.
@@ -54,8 +59,9 @@ Hands-on Chief Product & Technology Officer at Justo, where technology anchored 
 - Scaled cloud, GST, and banking services to a 2M+ SME ecosystem.
 
 ### AMD
+
 **Senior Manager and Director**  
-*Aug 2011 to Sep 2014*
+_Aug 2011 to Sep 2014_
 
 - Drove laptop business growth at AMD India by rethinking how benchmarks shape the product roadmap.
 - Owned market requirements, roadmap, architecture, and engineering execution.
@@ -64,30 +70,34 @@ Hands-on Chief Product & Technology Officer at Justo, where technology anchored 
 - Drove $40M in incremental laptop business revenue.
 
 ### Altisource
+
 **Product & Programs Head**  
-*2014 to 2017*
+_2014 to 2017_
 
 - Led a B2B marketplace and mortgage/loan origination platform spanning valuation, home inspection, and insurance.
 - Managed a team of 60.
 - Delivered $2M+ in revenue in two years.
 
 ### Nokia
+
 **Principal Product Manager**  
-*2005 to 2011*
+_2005 to 2011_
 
 - Led maps, location, calendar, and contacts across the Nokia smartphone line.
 - Worked on mobile platform products during the smartphone era.
 
 ### The X Future
+
 **CPO and Technology Head**  
-*2020 to 2021*
+_2020 to 2021_
 
 - Built a B2B platform for corporates to scout and buy startup innovation.
 - Led product and technology from concept through execution.
 
 ### Bell Labs and Verisign
+
 **Engineering**  
-*2001 to 2005*
+_2001 to 2005_
 
 - Worked on telecom HLR and VLR switches.
 - Built the Datablitz in-memory database.
