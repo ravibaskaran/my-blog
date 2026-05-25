@@ -10,7 +10,7 @@ import {buildSanityArticleMdx} from "../src/utils/sanityArticleMdx.js";
       modDatetime: "2026-05-22T12:00:00.000Z",
       author: "Ravi",
       featured: false,
-      draft: false,
+      draft: true,
       tags: ["ai", "leadership"],
       leadImage: "https://cdn.example.com/lead.jpg",
       leadImageAlt: "Lead image",
@@ -23,6 +23,7 @@ import {buildSanityArticleMdx} from "../src/utils/sanityArticleMdx.js";
   assert.match(mdx, /leadImage: "https:\/\/cdn\.example\.com\/lead\.jpg"/);
   assert.match(mdx, /leadImageAlt: "Lead image"/);
   assert.match(mdx, /ogImage: "https:\/\/cdn\.example\.com\/og\.jpg"/);
+  assert.match(mdx, /draft: false/);
   assert.match(mdx, /articleSourceUrl: "https:\/\/medium\.com\/example\/story"/);
   assert.match(mdx, /<h2>Section<\/h2><p>Body text<\/p>$/);
 }

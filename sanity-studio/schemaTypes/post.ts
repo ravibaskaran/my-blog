@@ -12,9 +12,15 @@ export default defineType({
     defineField({ name: 'modDatetime', type: 'datetime' }),
     defineField({ name: 'author', type: 'string', initialValue: 'Ravi' }),
     defineField({ name: 'featured', type: 'boolean', initialValue: false }),
-    defineField({ name: 'draft', type: 'boolean', initialValue: false }),
     defineField({ name: 'tags', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
     defineField({ name: 'ogImage', type: 'image', options: { hotspot: true } }),
+    defineField({
+      name: 'articleSourceUrl',
+      title: 'Article Source URL',
+      type: 'url',
+      description: 'Optional source/reference link shown at the bottom of the published post.',
+      validation: rule => rule.uri({ scheme: ['http', 'https'] }),
+    }),
     defineField({ name: 'body', type: 'array', of: [{ type: 'block' }, { type: 'image' }], title: 'Content' })
   ]
 })

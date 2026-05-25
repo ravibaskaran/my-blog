@@ -33,6 +33,7 @@ const client = createClient({
   dataset: process.env.SANITY_DATASET,
   apiVersion: process.env.SANITY_API_VERSION,
   useCdn: false,
+  perspective: 'published',
 });
 
 const builder = imageUrlBuilder(client);
@@ -59,16 +60,11 @@ async function sync() {
     pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityArticleMdx.js')).href
   );
 
-  const postQuery = '*[_type == "post" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
-  const linkedinQuery = '*[_type == "linkedinArticle" && (!defined(draft) || draft == false)] | order(pubDatetime desc)';
-  const [posts, linkedinArticles] = await Promise.all([
-    client.fetch(postQuery),
-    client.fetch(linkedinQuery),
-  ]);
+  const postQuery = '*[_type == "post"] | order(pubDatetime desc)';
+  const posts = await client.fetch(postQuery);
 
   const generatedDirs = [
     { dir: path.join(__dirname, 'src', 'content', 'posts', 'sanity'), documents: posts },
-    { dir: path.join(__dirname, 'src', 'content', 'posts', 'linkedin'), documents: linkedinArticles },
   ];
 
   for (const { dir, documents } of generatedDirs) {
@@ -93,7 +89,6 @@ async function sync() {
           modDatetime: document.modDatetime || document.pubDatetime,
           author: document.author || 'Admin',
           featured: document.featured || false,
-          draft: document.draft || false,
           tags: document.tags || [],
           leadImage,
           leadImageAlt,
@@ -106,7 +101,7 @@ async function sync() {
       fs.writeFileSync(path.join(dir, document.slug.current + '.mdx'), frontmatter, 'utf8');
     }
   }
-  console.log('Synced ' + posts.length + ' posts and ' + linkedinArticles.length + ' LinkedIn articles from Sanity.');
+  console.log('Synced ' + posts.length + ' published posts from Sanity.');
 }
 
 sync().catch(error => {

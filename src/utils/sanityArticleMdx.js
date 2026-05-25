@@ -10,7 +10,7 @@ export function buildSanityArticleMdx(article, htmlBody) {
     "modDatetime: " + modDatetime,
     "author: " + JSON.stringify(article.author ?? "Admin"),
     "featured: " + Boolean(article.featured),
-    "draft: " + Boolean(article.draft),
+    "draft: false",
     "tags: " + JSON.stringify(tags),
   ];
 
