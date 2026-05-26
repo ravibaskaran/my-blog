@@ -91,9 +91,12 @@
 
       @media screen {
         body {
-          max-width: 210mm;
-          margin: 0 auto;
-          padding: 14mm;
+          display: flex;
+          justify-content: center;
+          padding: 14mm 0;
+        }
+        .resume-sheet {
+          width: min(210mm, calc(100vw - 28mm));
         }
       }
 
@@ -909,831 +912,837 @@
     </style>
   </head>
   <body>
-    <!-- ============================ PAGE 1 ============================ -->
+    <main class="resume-sheet">
+      <!-- ============================ PAGE 1 ============================ -->
 
-    <div class="header">
-      <div class="header-left">
-        <div class="name">Ravi Baskaran</div>
-        <div class="title">
-          Chief Product &amp; Technology Officer<span class="dot">·</span><span
-            style="color: var(--olive); font-weight: 400;">Justo</span
-          >
-        </div>
-      </div>
-      <div class="header-right">
-        <div class="contact-row">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><rect x="2" y="4" width="20" height="16" rx="2"></rect><path
-              d="m22 7-10 5L2 7"></path></svg
-          >
-          <a href="mailto:brkumar@gmail.com">brkumar@gmail.com</a>
-        </div>
-        <div class="contact-row">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4z"
-            ></path><rect x="2" y="9" width="4" height="12" rx="0.5"
-            ></rect><circle cx="4" cy="4" r="2"></circle></svg
-          >
-          <a href="https://linkedin.com/in/brkumar">linkedin.com/in/brkumar</a>
-        </div>
-        <div class="contact-row">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-            ></path></svg
-          >
-          +91 98453 88115
-        </div>
-        <div class="contact-row">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"
-            ></path><circle cx="12" cy="10" r="3"></circle></svg
-          >
-          Bangalore, India
-        </div>
-      </div>
-    </div>
-
-    <div class="metrics">
-      <div class="metric metric-1">
-        <div class="metric-icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="12" r="10"></circle><polyline
-              points="12 6 12 12 16 14"></polyline></svg
-          >
-        </div>
-        <div>
-          <div class="metric-value">20<span class="unit">+ yrs</span></div>
-          <div class="metric-label">
-            B2B product leadership across five categories
+      <div class="header">
+        <div class="header-left">
+          <div class="name">Ravi Baskaran</div>
+          <div class="title">
+            Chief Product &amp; Technology Officer<span class="dot">·</span
+            ><span style="color: var(--olive); font-weight: 400;">Justo</span>
           </div>
         </div>
-      </div>
-      <div class="metric metric-2">
-        <div class="metric-icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"
-            ></polyline><polyline points="17 6 23 6 23 12"></polyline></svg
-          >
-        </div>
-        <div>
-          <div class="metric-value">$40<span class="unit">M+</span></div>
-          <div class="metric-label">
-            incremental laptop revenue at AMD India
-          </div>
-        </div>
-      </div>
-      <div class="metric metric-3">
-        <div class="metric-icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-              cx="9"
-              cy="7"
-              r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
-              d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
-          >
-        </div>
-        <div>
-          <div class="metric-value">2<span class="unit">M+</span></div>
-          <div class="metric-label">SMEs scaled on Tally cloud and GST</div>
-        </div>
-      </div>
-      <div class="metric metric-4">
-        <div class="metric-icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="8" r="7"></circle><polyline
-              points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg
-          >
-        </div>
-        <div>
-          <div class="metric-value">14</div>
-          <div class="metric-label">
-            patents granted across telecom and mobile
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="theme-ink">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"
-            ></path></svg
-          >
-        </span>
-        Summary
-      </div>
-      <div class="summary">
-        Hands on Chief Product &amp; Technology Officer at <span class="hl-ink"
-          >Justo</span
-        >, where technology anchored the largest pie in the IPO use of proceeds.
-        20+ years building, product architecture, workflow design, and AI system
-        design. Commercializing B2B products across SaaS, banking, ecommerce,
-        real estate, accounting and telecom. Comfortable taking a product from <span
-          class="hl-amber">0 to 1</span
-        > inside a startup and scaling it inside a Fortune 500. Range covers product
-        strategy, architecture, engineering execution, GTM, client success, P&amp;L
-        and CxO engagement.
-      </div>
-    </section>
-
-    <section class="theme-ink">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path
-              d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg
-          >
-        </span>
-        Experience
-        <span class="sub"
-          >2001 to present · seven companies · four flagship projects</span
-        >
-      </div>
-
-      <!-- JUSTO -->
-      <div class="project">
-        <div class="proj-head">
-          <div class="proj-icon proj-real-estate">
+        <div class="header-right">
+          <div class="contact-row">
             <svg class="icon" viewBox="0 0 24 24"
-              ><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path
-                d="M19 21V11l-6-4"></path><path d="M9 9v.01"></path><path
-                d="M9 12v.01"></path><path d="M9 15v.01"></path><path
-                d="M9 18v.01"></path></svg
+              ><rect x="2" y="4" width="20" height="16" rx="2"></rect><path
+                d="m22 7-10 5L2 7"></path></svg
+            >
+            <a href="mailto:brkumar@gmail.com">brkumar@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4z"
+              ></path><rect x="2" y="9" width="4" height="12" rx="0.5"
+              ></rect><circle cx="4" cy="4" r="2"></circle></svg
+            >
+            <a href="https://linkedin.com/in/brkumar">linkedin.com/in/brkumar</a
             >
           </div>
-          <div class="proj-head-text">
-            <div class="proj-name-row">
-              <span class="proj-name">Justo</span>
-              <span class="proj-kind">Real estate, India · Team of 20</span>
-            </div>
-            <div class="proj-role-row">
-              <span class="proj-role"
-                >Chief Product &amp; Technology Officer</span
-              >
-              <span class="sep">·</span>
-              <span class="proj-dates">Jan 2025 to present</span>
+          <div class="contact-row">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path></svg
+            >
+            +91 98453 88115
+          </div>
+          <div class="contact-row">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"
+              ></path><circle cx="12" cy="10" r="3"></circle></svg
+            >
+            Bangalore, India
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric metric-1">
+          <div class="metric-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><circle cx="12" cy="12" r="10"></circle><polyline
+                points="12 6 12 12 16 14"></polyline></svg
+            >
+          </div>
+          <div>
+            <div class="metric-value">20<span class="unit">+ yrs</span></div>
+            <div class="metric-label">
+              B2B product leadership across five categories
             </div>
           </div>
         </div>
-        <div class="proj-lines">
-          <div class="proj-row">
-            <div class="proj-label">Role</div>
-            <div class="proj-text">
-              Report to the CEO. Lead product, technology and AI. Moved Justo
-              from manual operating processes into an enterprise built around
-              AI, anchoring the <span class="hl-ink"
-                >IPO with technology as the largest pie</span
-              > in the use of proceeds.
+        <div class="metric metric-2">
+          <div class="metric-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"
+              ></polyline><polyline points="17 6 23 6 23 12"></polyline></svg
+            >
+          </div>
+          <div>
+            <div class="metric-value">$40<span class="unit">M+</span></div>
+            <div class="metric-label">
+              incremental laptop revenue at AMD India
             </div>
           </div>
-          <div class="proj-row">
-            <div class="proj-label">Actions</div>
-            <div class="proj-text">
-              Built CRM, ERP and workflow systems from the ground up under the
-              internal product name <strong>Manthan</strong>. Embedded GenAI and
-              agentic workflows across calling, sourcing, closing, collections
-              and site operations. Production stack runs Crew with Gemini and
-              selected open source models. Ran build versus buy on every major
-              investment.
-            </div>
+        </div>
+        <div class="metric metric-3">
+          <div class="metric-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+              ></path><circle cx="9" cy="7" r="4"></circle><path
+                d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
+                d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+            >
           </div>
-          <div class="proj-row">
-            <div class="proj-label">Impact</div>
-            <div class="proj-text">
-              Won investor backing for the full tech and AI build at IPO.
-              Internal evidence: <span class="hl-rust"
-                >~30% reduction in CAC</span
-              > and a similar lift in prospect to customer conversion. Sales, sourcing,
-              closing, collections and site operations now 100% measurable.
+          <div>
+            <div class="metric-value">2<span class="unit">M+</span></div>
+            <div class="metric-label">SMEs scaled on Tally cloud and GST</div>
+          </div>
+        </div>
+        <div class="metric metric-4">
+          <div class="metric-icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><circle cx="12" cy="8" r="7"></circle><polyline
+                points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"
+              ></polyline></svg
+            >
+          </div>
+          <div>
+            <div class="metric-value">14</div>
+            <div class="metric-label">
+              patents granted across telecom and mobile
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ALGONOMY -->
-      <div class="project">
-        <div class="proj-head">
-          <div class="proj-icon proj-retail">
+      <section class="theme-ink">
+        <div class="section-title">
+          <span class="icon-wrap">
             <svg class="icon" viewBox="0 0 24 24"
-              ><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
-              ></path><line x1="3" y1="6" x2="21" y2="6"></line><path
-                d="M16 10a4 4 0 0 1-8 0"></path></svg
+              ><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"
+              ></path></svg
             >
-          </div>
-          <div class="proj-head-text">
-            <div class="proj-name-row">
-              <span class="proj-name">Algonomy</span>
-              <span class="proj-kind"
-                >Retail personalization, India and US · Team of 35</span
+          </span>
+          Summary
+        </div>
+        <div class="summary">
+          Hands on Chief Product &amp; Technology Officer at <span
+            class="hl-ink">Justo</span
+          >, where technology anchored the largest pie in the IPO use of
+          proceeds. 20+ years building, product architecture, workflow design,
+          and AI system design. Commercializing B2B products across SaaS,
+          banking, ecommerce, real estate, accounting and telecom. Comfortable
+          taking a product from <span class="hl-amber">0 to 1</span> inside a startup
+          and scaling it inside a Fortune 500. Range covers product strategy, architecture,
+          engineering execution, GTM, client success, P&amp;L and CxO engagement.
+        </div>
+      </section>
+
+      <section class="theme-ink">
+        <div class="section-title">
+          <span class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><rect x="2" y="7" width="20" height="14" rx="2" ry="2"
+              ></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+              ></path></svg
+            >
+          </span>
+          Experience
+          <span class="sub"
+            >2001 to present · seven companies · four flagship projects</span
+          >
+        </div>
+
+        <!-- JUSTO -->
+        <div class="project">
+          <div class="proj-head">
+            <div class="proj-icon proj-real-estate">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path
+                  d="M19 21V11l-6-4"></path><path d="M9 9v.01"></path><path
+                  d="M9 12v.01"></path><path d="M9 15v.01"></path><path
+                  d="M9 18v.01"></path></svg
               >
             </div>
-            <div class="proj-role-row">
-              <span class="proj-role">Director of Products</span>
-              <span class="sep">·</span>
-              <span class="proj-dates">Feb 2022 to Jan 2025</span>
-            </div>
-          </div>
-        </div>
-        <div class="proj-lines">
-          <div class="proj-row">
-            <div class="proj-label">Role</div>
-            <div class="proj-text">
-              Led product strategy and commercialization for <strong
-                >Find &amp; Discover</strong
-              > in retail personalization. Hired across the stack, from senior software
-              engineer to VP Engineering and Director of Products.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Actions</div>
-            <div class="proj-text">
-              Integrated LLM, vector search and wisdom of crowds into
-              personalization. Blended popularity, relevance and commercial
-              goals so search served customer experience and business priorities
-              together. Delivered real time B2B search.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Impact</div>
-            <div class="proj-text">
-              Established Find &amp; Discover as a <span class="hl-amber"
-                >$2M ARR</span
-              > business and the <span class="hl-amber">#2</span> credible player
-              in personalized retail search. Customers included a top 3 Canadian &
-              Indian retailer, a leading European B2B retailer
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TALLY -->
-      <div class="project">
-        <div class="proj-head">
-          <div class="proj-icon proj-accounting">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><rect x="4" y="2" width="16" height="20" rx="2"></rect><line
-                x1="8"
-                y1="6"
-                x2="16"
-                y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path
-                d="M16 10h.01"></path><path d="M12 10h.01"></path><path
-                d="M8 10h.01"></path><path d="M12 14h.01"></path><path
-                d="M8 14h.01"></path><path d="M12 18h.01"></path><path
-                d="M8 18h.01"></path></svg
-            >
-          </div>
-          <div class="proj-head-text">
-            <div class="proj-name-row">
-              <span class="proj-name">Tally Solutions</span>
-              <span class="proj-kind">Accounting SaaS, India · Team of 120</span
-              >
-            </div>
-            <div class="proj-role-row">
-              <span class="proj-role">Product Director</span>
-              <span class="sep">·</span>
-              <span class="proj-dates">Nov 2017 to Oct 2020</span>
-            </div>
-          </div>
-        </div>
-        <div class="proj-lines">
-          <div class="proj-row">
-            <div class="proj-label">Role</div>
-            <div class="proj-text">
-              Led product strategy and value creation for cloud, GST and banking
-              services on one of India's most widely used SME accounting
-              platforms.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Actions</div>
-            <div class="proj-text">
-              Created and launched Tally GST. Built the first GST and banking
-              services on Tally Cloud. Led banking reconciliation and payment
-              integrations with DBS, HDFC, Kotak and others. Contributed to
-              TallyPrime launch. Designed cloud architecture for low cost
-              operations.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Impact</div>
-            <div class="proj-text">
-              Scaled cloud, GST and banking services to a <span class="hl-sage"
-                >2M+ SME ecosystem</span
-              > at the lowest operating cost in the category. Made cloud infrastructure
-              a strategic advantage for Tally.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AMD -->
-      <div class="project">
-        <div class="proj-head">
-          <div class="proj-icon proj-semis">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect
-                x="9"
-                y="9"
-                width="6"
-                height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line
-                x1="15"
-                y1="1"
-                x2="15"
-                y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line
-                x1="15"
-                y1="20"
-                x2="15"
-                y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line
-                x1="20"
-                y1="14"
-                x2="23"
-                y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line
-                x1="1"
-                y1="14"
-                x2="4"
-                y2="14"></line></svg
-            >
-          </div>
-          <div class="proj-head-text">
-            <div class="proj-name-row">
-              <span class="proj-name">AMD</span>
-              <span class="proj-kind"
-                >Semiconductors, India · Laptop business growth</span
-              >
-            </div>
-            <div class="proj-role-row">
-              <span class="proj-role">Senior Manager and Director</span>
-              <span class="sep">·</span>
-              <span class="proj-dates">Aug 2011 to Sep 2014</span>
-            </div>
-          </div>
-        </div>
-        <div class="proj-lines">
-          <div class="proj-row">
-            <div class="proj-label">Role</div>
-            <div class="proj-text">
-              Drove laptop business growth at AMD India by rethinking how
-              benchmarks shape the product roadmap. Owned market requirements,
-              roadmap, architecture and engineering execution.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Actions</div>
-            <div class="proj-text">
-              Built automated systems for CPU and GPU benchmark collection, with
-              models to analyze and visualize the performance picture. Won
-              internal backing to plan the roadmap from analytics rather than
-              executive instinct. Hired and managed engineering teams.
-            </div>
-          </div>
-          <div class="proj-row">
-            <div class="proj-label">Impact</div>
-            <div class="proj-text">
-              Drove <span class="hl-ink"
-                >$40M in incremental laptop business revenue</span
-              >. Established benchmark driven product planning as the operating
-              norm at AMD India.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ PAGE 2 ============================ -->
-
-    <section class="theme-amber">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="12" r="10"></circle><polygon
-              points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
-            ></polygon></svg
-          >
-        </span>
-        Earlier Outcomes
-        <span class="sub"
-          >2001 to 2021 · four roles · 14 patents · in-memory DB to mobile to
-          mortgage</span
-        >
-      </div>
-
-      <div class="earlier-intro">
-        <span class="hl"
-          >Built the operating muscle that Justo now exercises in real time.</span
-        > Range across in-memory infrastructure, mobile platforms, ecommerce, B2B
-        marketplaces and analytics. The thread across every era has been the same:
-        build systems the business runs on, not features the business decorates with.
-      </div>
-
-      <div class="earlier-grid">
-        <div class="earlier-item">
-          <div class="earlier-icon">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-              ></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg
-            >
-          </div>
-          <div class="earlier-text">
-            <div class="earlier-name">
-              Altisource <span class="span">2014 to 2017</span>
-            </div>
-            <div class="earlier-desc">
-              Product &amp; Programs Head · B2B marketplace, Mortgage and loan
-              origination, valuation, home inspection, insurance · Team of 60
-            </div>
-            <span class="earlier-stat">$2M+ revenue in 2 years</span>
-          </div>
-        </div>
-
-        <div class="earlier-item">
-          <div class="earlier-icon">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"
-              ></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg
-            >
-          </div>
-          <div class="earlier-text">
-            <div class="earlier-name">
-              Nokia <span class="span">2005 to 2011</span>
-            </div>
-            <div class="earlier-desc">
-              Principal Product Manager · Maps, Location, Calendar and Contacts
-              across the Nokia smartphone line
-            </div>
-            <span class="earlier-stat">Mobile platform era</span>
-          </div>
-        </div>
-
-        <div class="earlier-item">
-          <div class="earlier-icon">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><circle cx="12" cy="12" r="10"></circle><line
-                x1="12"
-                y1="8"
-                x2="12"
-                y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"
-              ></line></svg
-            >
-          </div>
-          <div class="earlier-text">
-            <div class="earlier-name">
-              The X Future <span class="span">2020 to 2021</span>
-            </div>
-            <div class="earlier-desc">
-              CPO and Technology Head · B2B platform for corporates to scout and
-              buy startup innovation
-            </div>
-            <span class="earlier-stat">0 to 1 build</span>
-          </div>
-        </div>
-
-        <div class="earlier-item">
-          <div class="earlier-icon">
-            <svg class="icon" viewBox="0 0 24 24"
-              ><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path
-                d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path
-                d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg
-            >
-          </div>
-          <div class="earlier-text">
-            <div class="earlier-name">
-              Bell Labs and Verisign <span class="span">2001 to 2005</span>
-            </div>
-            <div class="earlier-desc">
-              Engineering · Telecom HLR and VLR switches · Built the Datablitz
-              in-memory database
-            </div>
-            <span class="earlier-stat">Infrastructure foundations</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="throughline">
-        <div class="throughline-head">
-          <svg class="icon icon-sm" viewBox="0 0 24 24"
-            ><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg
-          >
-          Throughline
-        </div>
-        <div class="throughline-body">
-          <span class="em">Datablitz</span> from Bell Labs still runs inside telecom
-          switches two decades on. <span class="em">Nokia Maps</span> shipped as the
-          location backbone for a generation of smartphones. The instinct to build
-          infrastructure that outlasts the trend cycle has carried through every role.
-        </div>
-      </div>
-    </section>
-
-    <section class="theme-rust">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="12" r="10"></circle><circle
-              cx="12"
-              cy="12"
-              r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg
-          >
-        </span>
-        Judgment &amp; Conviction
-        <span class="sub">three bets, three decades, three outcomes</span>
-      </div>
-
-      <div class="convictions">
-        <div class="conv-card">
-          <div class="conv-head">
-            <span class="conv-year">2011</span>
-            <span class="conv-shift">Analytics over instinct</span>
-          </div>
-          <div class="conv-body">
-            At AMD, bet that automated benchmark analytics could shape the
-            laptop roadmap better than executive intuition. Won the internal
-            backing. Result: <span class="hl">$40M incremental revenue</span> and
-            analytics planning as the operating norm at AMD India.
-          </div>
-        </div>
-        <div class="conv-card">
-          <div class="conv-head">
-            <span class="conv-year">2022</span>
-            <span class="conv-shift">GenAI inside personalization</span>
-          </div>
-          <div class="conv-body">
-            At Algonomy, bet on LLM and vector search inside retail
-            personalization before category consensus formed. Repositioned Find
-            &amp; Discover to <span class="hl">#2</span> and built it into a $2M ARR
-            business with marquee retailers across three continents.
-          </div>
-        </div>
-        <div class="conv-card">
-          <div class="conv-head">
-            <span class="conv-year">2025</span>
-            <span class="conv-shift">AI as default, to IPO</span>
-          </div>
-          <div class="conv-body">
-            At Justo, bet that real estate workflows should be rebuilt with AI
-            at the core rather than layered on top of CRM. Won board and
-            investor backing for technology as the <span class="hl"
-              >largest pie in the IPO</span
-            > use of proceeds.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ PAGE 3 ============================ -->
-
-    <section class="theme-amber page-break">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><circle cx="12" cy="8" r="7"></circle><polyline
-              points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg
-          >
-        </span>
-        Patents &amp; Publications
-        <span class="sub"
-          >14 patents granted · selected talks and whitepapers</span
-        >
-      </div>
-
-      <div class="impact-grid">
-        <div>
-          <div class="sub-block-title">
-            <span class="label">Patents</span>
-            <span class="meta">14 granted across three eras</span>
-          </div>
-          <div class="patent-row">
-            <div class="patent-bar"></div>
-            <div class="patent-content">
-              <div class="patent-header">
-                <span class="patent-title">Mobile, Location and Context</span>
-                <span class="patent-date">2005 to 2011</span>
+            <div class="proj-head-text">
+              <div class="proj-name-row">
+                <span class="proj-name">Justo</span>
+                <span class="proj-kind">Real estate, India · Team of 20</span>
               </div>
-              <div class="patent-where">Nokia · smartphone era</div>
-            </div>
-          </div>
-          <div class="patent-row">
-            <div class="patent-bar"></div>
-            <div class="patent-content">
-              <div class="patent-header">
-                <span class="patent-title">Identity, DNS and Mobile Data</span>
-                <span class="patent-date">2003 to 2005</span>
-              </div>
-              <div class="patent-where">Verisign</div>
-            </div>
-          </div>
-          <div class="patent-row">
-            <div class="patent-bar"></div>
-            <div class="patent-content">
-              <div class="patent-header">
-                <span class="patent-title"
-                  >Telecom Switching and In-Memory Database</span
+              <div class="proj-role-row">
+                <span class="proj-role"
+                  >Chief Product &amp; Technology Officer</span
                 >
-                <span class="patent-date">2001 to 2003</span>
+                <span class="sep">·</span>
+                <span class="proj-dates">Jan 2025 to present</span>
               </div>
-              <div class="patent-where">Lucent and Bell Labs</div>
+            </div>
+          </div>
+          <div class="proj-lines">
+            <div class="proj-row">
+              <div class="proj-label">Role</div>
+              <div class="proj-text">
+                Report to the CEO. Lead product, technology and AI. Moved Justo
+                from manual operating processes into an enterprise built around
+                AI, anchoring the <span class="hl-ink"
+                  >IPO with technology as the largest pie</span
+                > in the use of proceeds.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Actions</div>
+              <div class="proj-text">
+                Built CRM, ERP and workflow systems from the ground up under the
+                internal product name <strong>Manthan</strong>. Embedded GenAI
+                and agentic workflows across calling, sourcing, closing,
+                collections and site operations. Production stack runs Crew with
+                Gemini and selected open source models. Ran build versus buy on
+                every major investment.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Impact</div>
+              <div class="proj-text">
+                Won investor backing for the full tech and AI build at IPO.
+                Internal evidence: <span class="hl-rust"
+                  >~30% reduction in CAC</span
+                > and a similar lift in prospect to customer conversion. Sales, sourcing,
+                closing, collections and site operations now 100% measurable.
+              </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <div class="sub-block-title">
-            <span class="label">Selected Talks and Whitepapers</span>
-            <span class="meta">2013 to 2025</span>
-          </div>
-          <div class="pub-row">
-            <div class="pub-header">
-              <span class="pub-title">AI in B2B Real Estate</span>
-              <span class="pub-date">2025.03</span>
-            </div>
-            <div class="pub-desc">
-              Industry talk on agentic workflows in real estate operations
-            </div>
-          </div>
-          <div class="pub-row">
-            <div class="pub-header">
-              <span class="pub-title"
-                >Availability, Reliability and Security of Cloud Data</span
+        <!-- ALGONOMY -->
+        <div class="project">
+          <div class="proj-head">
+            <div class="proj-icon proj-retail">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                ></path><line x1="3" y1="6" x2="21" y2="6"></line><path
+                  d="M16 10a4 4 0 0 1-8 0"></path></svg
               >
-              <span class="pub-date">2016.06</span>
             </div>
-            <div class="pub-desc">
-              Whitepaper on enterprise cloud architecture
+            <div class="proj-head-text">
+              <div class="proj-name-row">
+                <span class="proj-name">Algonomy</span>
+                <span class="proj-kind"
+                  >Retail personalization, India and US · Team of 35</span
+                >
+              </div>
+              <div class="proj-role-row">
+                <span class="proj-role">Director of Products</span>
+                <span class="sep">·</span>
+                <span class="proj-dates">Feb 2022 to Jan 2025</span>
+              </div>
             </div>
           </div>
-          <div class="pub-row">
-            <div class="pub-header">
-              <span class="pub-title"
-                >Semantic Location Prediction Using Context and Positioning</span
+          <div class="proj-lines">
+            <div class="proj-row">
+              <div class="proj-label">Role</div>
+              <div class="proj-text">
+                Led product strategy and commercialization for <strong
+                  >Find &amp; Discover</strong
+                > in retail personalization. Hired across the stack, from senior software
+                engineer to VP Engineering and Director of Products.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Actions</div>
+              <div class="proj-text">
+                Integrated LLM, vector search and wisdom of crowds into
+                personalization. Blended popularity, relevance and commercial
+                goals so search served customer experience and business
+                priorities together. Delivered real time B2B search.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Impact</div>
+              <div class="proj-text">
+                Established Find &amp; Discover as a <span class="hl-amber"
+                  >$2M ARR</span
+                > business and the <span class="hl-amber">#2</span> credible player
+                in personalized retail search. Customers included a top 3 Canadian
+                & Indian retailer, a leading European B2B retailer
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TALLY -->
+        <div class="project">
+          <div class="proj-head">
+            <div class="proj-icon proj-accounting">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><rect x="4" y="2" width="16" height="20" rx="2"></rect><line
+                  x1="8"
+                  y1="6"
+                  x2="16"
+                  y2="6"></line><line x1="16" y1="14" x2="16" y2="18"
+                ></line><path d="M16 10h.01"></path><path d="M12 10h.01"
+                ></path><path d="M8 10h.01"></path><path d="M12 14h.01"
+                ></path><path d="M8 14h.01"></path><path d="M12 18h.01"
+                ></path><path d="M8 18h.01"></path></svg
               >
-              <span class="pub-date">2015.03</span>
             </div>
-            <div class="pub-desc">
-              Whitepaper on context aware mobile systems
+            <div class="proj-head-text">
+              <div class="proj-name-row">
+                <span class="proj-name">Tally Solutions</span>
+                <span class="proj-kind"
+                  >Accounting SaaS, India · Team of 120</span
+                >
+              </div>
+              <div class="proj-role-row">
+                <span class="proj-role">Product Director</span>
+                <span class="sep">·</span>
+                <span class="proj-dates">Nov 2017 to Oct 2020</span>
+              </div>
             </div>
           </div>
-          <div class="pub-row">
-            <div class="pub-header">
-              <span class="pub-title"
-                >Economics of the Cloud Data Controller</span
+          <div class="proj-lines">
+            <div class="proj-row">
+              <div class="proj-label">Role</div>
+              <div class="proj-text">
+                Led product strategy and value creation for cloud, GST and
+                banking services on one of India's most widely used SME
+                accounting platforms.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Actions</div>
+              <div class="proj-text">
+                Created and launched Tally GST. Built the first GST and banking
+                services on Tally Cloud. Led banking reconciliation and payment
+                integrations with DBS, HDFC, Kotak and others. Contributed to
+                TallyPrime launch. Designed cloud architecture for low cost
+                operations.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Impact</div>
+              <div class="proj-text">
+                Scaled cloud, GST and banking services to a <span
+                  class="hl-sage">2M+ SME ecosystem</span
+                > at the lowest operating cost in the category. Made cloud infrastructure
+                a strategic advantage for Tally.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AMD -->
+        <div class="project">
+          <div class="proj-head">
+            <div class="proj-icon proj-semis">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect
+                  x="9"
+                  y="9"
+                  width="6"
+                  height="6"></rect><line x1="9" y1="1" x2="9" y2="4"
+                ></line><line x1="15" y1="1" x2="15" y2="4"></line><line
+                  x1="9"
+                  y1="20"
+                  x2="9"
+                  y2="23"></line><line x1="15" y1="20" x2="15" y2="23"
+                ></line><line x1="20" y1="9" x2="23" y2="9"></line><line
+                  x1="20"
+                  y1="14"
+                  x2="23"
+                  y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line
+                  x1="1"
+                  y1="14"
+                  x2="4"
+                  y2="14"></line></svg
               >
-              <span class="pub-date">2013.01</span>
             </div>
-            <div class="pub-desc">Whitepaper on cloud cost architecture</div>
+            <div class="proj-head-text">
+              <div class="proj-name-row">
+                <span class="proj-name">AMD</span>
+                <span class="proj-kind"
+                  >Semiconductors, India · Laptop business growth</span
+                >
+              </div>
+              <div class="proj-role-row">
+                <span class="proj-role">Senior Manager and Director</span>
+                <span class="sep">·</span>
+                <span class="proj-dates">Aug 2011 to Sep 2014</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-lines">
+            <div class="proj-row">
+              <div class="proj-label">Role</div>
+              <div class="proj-text">
+                Drove laptop business growth at AMD India by rethinking how
+                benchmarks shape the product roadmap. Owned market requirements,
+                roadmap, architecture and engineering execution.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Actions</div>
+              <div class="proj-text">
+                Built automated systems for CPU and GPU benchmark collection,
+                with models to analyze and visualize the performance picture.
+                Won internal backing to plan the roadmap from analytics rather
+                than executive instinct. Hired and managed engineering teams.
+              </div>
+            </div>
+            <div class="proj-row">
+              <div class="proj-label">Impact</div>
+              <div class="proj-text">
+                Drove <span class="hl-ink"
+                  >$40M in incremental laptop business revenue</span
+                >. Established benchmark driven product planning as the
+                operating norm at AMD India.
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="theme-sage">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline
-              points="2 17 12 22 22 17"></polyline><polyline
-              points="2 12 12 17 22 12"></polyline></svg
-          >
-        </span>
-        Core Skills
-        <span class="sub">five capabilities, proven across the journey</span>
-      </div>
+      <!-- ============================ PAGE 2 ============================ -->
 
-      <div class="skill-row">
-        <div class="skill-icon">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><rect x="3" y="3" width="18" height="18" rx="2"></rect><path
-              d="M9 3v18"></path><path d="M3 9h18"></path></svg
+      <section class="theme-amber">
+        <div class="section-title">
+          <span class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><circle cx="12" cy="12" r="10"></circle><polygon
+                points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+              ></polygon></svg
+            >
+          </span>
+          Earlier Outcomes
+          <span class="sub"
+            >2001 to 2021 · four roles · 14 patents · in-memory DB to mobile to
+            mortgage</span
           >
         </div>
-        <div class="skill-content">
-          <div class="skill-label">AI Commercialization</div>
-          <div class="skill-body">
-            Turn AI capabilities into productized workflows with measurable
-            impact on <span class="em">CAC, conversion and operating cost</span
-            >. Crew with Gemini and selected open source models running in
-            production at Justo.
+
+        <div class="earlier-intro">
+          <span class="hl"
+            >Built the operating muscle that Justo now exercises in real time.</span
+          > Range across in-memory infrastructure, mobile platforms, ecommerce, B2B
+          marketplaces and analytics. The thread across every era has been the same:
+          build systems the business runs on, not features the business decorates
+          with.
+        </div>
+
+        <div class="earlier-grid">
+          <div class="earlier-item">
+            <div class="earlier-icon">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                ></path><polyline points="9 22 9 12 15 12 15 22"
+                ></polyline></svg
+              >
+            </div>
+            <div class="earlier-text">
+              <div class="earlier-name">
+                Altisource <span class="span">2014 to 2017</span>
+              </div>
+              <div class="earlier-desc">
+                Product &amp; Programs Head · B2B marketplace, Mortgage and loan
+                origination, valuation, home inspection, insurance · Team of 60
+              </div>
+              <span class="earlier-stat">$2M+ revenue in 2 years</span>
+            </div>
+          </div>
+
+          <div class="earlier-item">
+            <div class="earlier-icon">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"
+                ></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg
+              >
+            </div>
+            <div class="earlier-text">
+              <div class="earlier-name">
+                Nokia <span class="span">2005 to 2011</span>
+              </div>
+              <div class="earlier-desc">
+                Principal Product Manager · Maps, Location, Calendar and
+                Contacts across the Nokia smartphone line
+              </div>
+              <span class="earlier-stat">Mobile platform era</span>
+            </div>
+          </div>
+
+          <div class="earlier-item">
+            <div class="earlier-icon">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><circle cx="12" cy="12" r="10"></circle><line
+                  x1="12"
+                  y1="8"
+                  x2="12"
+                  y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"
+                ></line></svg
+              >
+            </div>
+            <div class="earlier-text">
+              <div class="earlier-name">
+                The X Future <span class="span">2020 to 2021</span>
+              </div>
+              <div class="earlier-desc">
+                CPO and Technology Head · B2B platform for corporates to scout
+                and buy startup innovation
+              </div>
+              <span class="earlier-stat">0 to 1 build</span>
+            </div>
+          </div>
+
+          <div class="earlier-item">
+            <div class="earlier-icon">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path
+                  d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path
+                  d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg
+              >
+            </div>
+            <div class="earlier-text">
+              <div class="earlier-name">
+                Bell Labs and Verisign <span class="span">2001 to 2005</span>
+              </div>
+              <div class="earlier-desc">
+                Engineering · Telecom HLR and VLR switches · Built the Datablitz
+                in-memory database
+              </div>
+              <span class="earlier-stat">Infrastructure foundations</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="skill-row">
-        <div class="skill-icon">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M3 3v18h18"></path><path d="m7 17 4-4 4 4 5-5"
-            ></path></svg
-          >
-        </div>
-        <div class="skill-content">
-          <div class="skill-label">Business Transformation</div>
-          <div class="skill-body">
-            Take businesses running on manual processes and rebuild them as <span
-              class="em"
-              >structured CRM, ERP and systems with AI on the inside</span
-            >. Done at Justo, Altisource and Algonomy.
+        <div class="throughline">
+          <div class="throughline-head">
+            <svg class="icon icon-sm" viewBox="0 0 24 24"
+              ><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"
+              ></polyline></svg
+            >
+            Throughline
+          </div>
+          <div class="throughline-body">
+            <span class="em">Datablitz</span> from Bell Labs still runs inside telecom
+            switches two decades on. <span class="em">Nokia Maps</span> shipped as
+            the location backbone for a generation of smartphones. The instinct to
+            build infrastructure that outlasts the trend cycle has carried through
+            every role.
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="skill-row">
-        <div class="skill-icon">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M12 2v6"></path><path d="M12 22v-6"></path><path
-              d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 14.83 4.24 4.24"
-            ></path><path d="M2 12h6"></path><path d="M22 12h-6"></path><path
-              d="m4.93 19.07 4.24-4.24"></path><path d="m14.83 9.17 4.24-4.24"
-            ></path></svg
-          >
+      <section class="theme-rust">
+        <div class="section-title">
+          <span class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><circle cx="12" cy="12" r="10"></circle><circle
+                cx="12"
+                cy="12"
+                r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg
+            >
+          </span>
+          Judgment &amp; Conviction
+          <span class="sub">three bets, three decades, three outcomes</span>
         </div>
-        <div class="skill-content">
-          <div class="skill-label">0 to 1 Build and Scale</div>
-          <div class="skill-body">
-            0 to 1 product builds with startups (Justo, The X Future, early
-            Algonomy) and scale builds inside Fortune 500 contexts (<span
-              class="em">AMD, Nokia, Tally at 2M+ users</span
-            >).
+
+        <div class="convictions">
+          <div class="conv-card">
+            <div class="conv-head">
+              <span class="conv-year">2011</span>
+              <span class="conv-shift">Analytics over instinct</span>
+            </div>
+            <div class="conv-body">
+              At AMD, bet that automated benchmark analytics could shape the
+              laptop roadmap better than executive intuition. Won the internal
+              backing. Result: <span class="hl">$40M incremental revenue</span> and
+              analytics planning as the operating norm at AMD India.
+            </div>
+          </div>
+          <div class="conv-card">
+            <div class="conv-head">
+              <span class="conv-year">2022</span>
+              <span class="conv-shift">GenAI inside personalization</span>
+            </div>
+            <div class="conv-body">
+              At Algonomy, bet on LLM and vector search inside retail
+              personalization before category consensus formed. Repositioned
+              Find &amp; Discover to <span class="hl">#2</span> and built it into
+              a $2M ARR business with marquee retailers across three continents.
+            </div>
+          </div>
+          <div class="conv-card">
+            <div class="conv-head">
+              <span class="conv-year">2025</span>
+              <span class="conv-shift">AI as default, to IPO</span>
+            </div>
+            <div class="conv-body">
+              At Justo, bet that real estate workflows should be rebuilt with AI
+              at the core rather than layered on top of CRM. Won board and
+              investor backing for technology as the <span class="hl"
+                >largest pie in the IPO</span
+              > use of proceeds.
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="skill-row">
-        <div class="skill-icon">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path d="M2 7l10 5 10-5"
-            ></path><path d="M12 22V12"></path></svg
+      <!-- ============================ PAGE 3 ============================ -->
+
+      <section class="theme-amber page-break">
+        <div class="section-title">
+          <span class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><circle cx="12" cy="8" r="7"></circle><polyline
+                points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"
+              ></polyline></svg
+            >
+          </span>
+          Patents &amp; Publications
+          <span class="sub"
+            >14 patents granted · selected talks and whitepapers</span
           >
         </div>
-        <div class="skill-content">
-          <div class="skill-label">Product and Platform Leadership</div>
-          <div class="skill-body">
-            Product strategy, PMF, platform architecture, MRD and PRD, UX, SaaS
-            and cloud platforms. Hired teams from <span class="em"
-              >senior software engineer through VP Engineering and Director of
-              Products</span
-            >.
+
+        <div class="impact-grid">
+          <div>
+            <div class="sub-block-title">
+              <span class="label">Patents</span>
+              <span class="meta">14 granted across three eras</span>
+            </div>
+            <div class="patent-row">
+              <div class="patent-bar"></div>
+              <div class="patent-content">
+                <div class="patent-header">
+                  <span class="patent-title">Mobile, Location and Context</span>
+                  <span class="patent-date">2005 to 2011</span>
+                </div>
+                <div class="patent-where">Nokia · smartphone era</div>
+              </div>
+            </div>
+            <div class="patent-row">
+              <div class="patent-bar"></div>
+              <div class="patent-content">
+                <div class="patent-header">
+                  <span class="patent-title">Identity, DNS and Mobile Data</span
+                  >
+                  <span class="patent-date">2003 to 2005</span>
+                </div>
+                <div class="patent-where">Verisign</div>
+              </div>
+            </div>
+            <div class="patent-row">
+              <div class="patent-bar"></div>
+              <div class="patent-content">
+                <div class="patent-header">
+                  <span class="patent-title"
+                    >Telecom Switching and In-Memory Database</span
+                  >
+                  <span class="patent-date">2001 to 2003</span>
+                </div>
+                <div class="patent-where">Lucent and Bell Labs</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sub-block-title">
+              <span class="label">Selected Talks and Whitepapers</span>
+              <span class="meta">2013 to 2025</span>
+            </div>
+            <div class="pub-row">
+              <div class="pub-header">
+                <span class="pub-title">AI in B2B Real Estate</span>
+                <span class="pub-date">2025.03</span>
+              </div>
+              <div class="pub-desc">
+                Industry talk on agentic workflows in real estate operations
+              </div>
+            </div>
+            <div class="pub-row">
+              <div class="pub-header">
+                <span class="pub-title"
+                  >Availability, Reliability and Security of Cloud Data</span
+                >
+                <span class="pub-date">2016.06</span>
+              </div>
+              <div class="pub-desc">
+                Whitepaper on enterprise cloud architecture
+              </div>
+            </div>
+            <div class="pub-row">
+              <div class="pub-header">
+                <span class="pub-title"
+                  >Semantic Location Prediction Using Context and Positioning</span
+                >
+                <span class="pub-date">2015.03</span>
+              </div>
+              <div class="pub-desc">
+                Whitepaper on context aware mobile systems
+              </div>
+            </div>
+            <div class="pub-row">
+              <div class="pub-header">
+                <span class="pub-title"
+                  >Economics of the Cloud Data Controller</span
+                >
+                <span class="pub-date">2013.01</span>
+              </div>
+              <div class="pub-desc">Whitepaper on cloud cost architecture</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="skill-row">
-        <div class="skill-icon">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle
-              cx="9"
-              cy="7"
-              r="4"></circle><polyline points="17 11 19 13 23 9"
-            ></polyline></svg
-          >
+      <section class="theme-sage">
+        <div class="section-title">
+          <span class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline
+                points="2 17 12 22 22 17"></polyline><polyline
+                points="2 12 12 17 22 12"></polyline></svg
+            >
+          </span>
+          Core Skills
+          <span class="sub">five capabilities, proven across the journey</span>
         </div>
-        <div class="skill-content">
-          <div class="skill-label">Commercial and CxO Engagement</div>
-          <div class="skill-body">
-            GTM, enterprise customers, pricing and P&amp;L. Reports to the Justo
-            CEO and <span class="em">presents to the board</span>. CxO
-            engagement across startups and Fortune 500s.
+
+        <div class="skill-row">
+          <div class="skill-icon">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><rect x="3" y="3" width="18" height="18" rx="2"></rect><path
+                d="M9 3v18"></path><path d="M3 9h18"></path></svg
+            >
+          </div>
+          <div class="skill-content">
+            <div class="skill-label">AI Commercialization</div>
+            <div class="skill-body">
+              Turn AI capabilities into productized workflows with measurable
+              impact on <span class="em"
+                >CAC, conversion and operating cost</span
+              >. Crew with Gemini and selected open source models running in
+              production at Justo.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="theme-ink no-break">
-      <div class="section-title">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24"
-            ><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path
-              d="M6 12v5c3 3 9 3 12 0v-5"></path></svg
-          >
-        </span>
-        Education
-      </div>
-      <div class="edu-block">
-        <div class="edu-row">
-          <div class="edu-icon">
+        <div class="skill-row">
+          <div class="skill-icon">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M3 3v18h18"></path><path d="m7 17 4-4 4 4 5-5"
+              ></path></svg
+            >
+          </div>
+          <div class="skill-content">
+            <div class="skill-label">Business Transformation</div>
+            <div class="skill-body">
+              Take businesses running on manual processes and rebuild them as <span
+                class="em"
+                >structured CRM, ERP and systems with AI on the inside</span
+              >. Done at Justo, Altisource and Algonomy.
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-icon">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M12 2v6"></path><path d="M12 22v-6"></path><path
+                d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 14.83 4.24 4.24"
+              ></path><path d="M2 12h6"></path><path d="M22 12h-6"></path><path
+                d="m4.93 19.07 4.24-4.24"></path><path d="m14.83 9.17 4.24-4.24"
+              ></path></svg
+            >
+          </div>
+          <div class="skill-content">
+            <div class="skill-label">0 to 1 Build and Scale</div>
+            <div class="skill-body">
+              0 to 1 product builds with startups (Justo, The X Future, early
+              Algonomy) and scale builds inside Fortune 500 contexts (<span
+                class="em">AMD, Nokia, Tally at 2M+ users</span
+              >).
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-icon">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M12 2 2 7v10l10 5 10-5V7z"></path><path
+                d="M2 7l10 5 10-5"></path><path d="M12 22V12"></path></svg
+            >
+          </div>
+          <div class="skill-content">
+            <div class="skill-label">Product and Platform Leadership</div>
+            <div class="skill-body">
+              Product strategy, PMF, platform architecture, MRD and PRD, UX,
+              SaaS and cloud platforms. Hired teams from <span class="em"
+                >senior software engineer through VP Engineering and Director of
+                Products</span
+              >.
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-icon">
+            <svg class="icon" viewBox="0 0 24 24"
+              ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"
+              ></path><circle cx="9" cy="7" r="4"></circle><polyline
+                points="17 11 19 13 23 9"></polyline></svg
+            >
+          </div>
+          <div class="skill-content">
+            <div class="skill-label">Commercial and CxO Engagement</div>
+            <div class="skill-body">
+              GTM, enterprise customers, pricing and P&amp;L. Reports to the
+              Justo CEO and <span class="em">presents to the board</span>. CxO
+              engagement across startups and Fortune 500s.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="theme-ink no-break">
+        <div class="section-title">
+          <span class="icon-wrap">
             <svg class="icon" viewBox="0 0 24 24"
               ><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path
                 d="M6 12v5c3 3 9 3 12 0v-5"></path></svg
             >
-          </div>
-          <div class="edu-text">
-            <div class="edu-name-row">
-              <span class="edu-school"
-                >National Institute of Technology, Nagpur</span
+          </span>
+          Education
+        </div>
+        <div class="edu-block">
+          <div class="edu-row">
+            <div class="edu-icon">
+              <svg class="icon" viewBox="0 0 24 24"
+                ><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path
+                  d="M6 12v5c3 3 9 3 12 0v-5"></path></svg
               >
-              <span class="edu-date">1996</span>
             </div>
-            <div class="edu-major">
-              Bachelor of Engineering, Electronics and Communications
+            <div class="edu-text">
+              <div class="edu-name-row">
+                <span class="edu-school"
+                  >National Institute of Technology, Nagpur</span
+                >
+                <span class="edu-date">1996</span>
+              </div>
+              <div class="edu-major">
+                Bachelor of Engineering, Electronics and Communications
+              </div>
             </div>
           </div>
+          <div class="edu-extra">
+            <span class="label">Executive development:</span> PG Diploma in Managing
+            Software Programs (HSE Finland) · Advanced Negotiations and Managing People
+            in Software Projects (IIM Bangalore) · People, Process and Management
+            (Stanford) · Situational and Tactical Business Leadership (Ken Blanchard)
+            · Technology Strategy for R&amp;D (Dr. Jay Paap, Caltech).
+          </div>
         </div>
-        <div class="edu-extra">
-          <span class="label">Executive development:</span> PG Diploma in Managing
-          Software Programs (HSE Finland) · Advanced Negotiations and Managing People
-          in Software Projects (IIM Bangalore) · People, Process and Management (Stanford)
-          · Situational and Tactical Business Leadership (Ken Blanchard) · Technology
-          Strategy for R&amp;D (Dr. Jay Paap, Caltech).
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
   </body>
 </html>
