@@ -1,8 +1,9 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { getSortedPosts } from "@/utils/getSortedPosts";
-import { getPostUrl } from "@/utils/getPostPaths";
 import config from "@/config";
+import { buildRssItems } from "@/utils/rssItems.js";
+import { getPostUrl } from "@/utils/getPostPaths";
 
 export async function GET() {
   const posts = await getCollection("posts");
@@ -12,11 +13,8 @@ export async function GET() {
     title: config.site.title,
     description: config.site.description,
     site: config.site.url,
-    items: sortedPosts.map(({ data, id, filePath }) => ({
-      link: getPostUrl(id, filePath, config.site.lang),
-      title: data.title,
-      description: data.description,
-      pubDate: new Date(data.modDatetime ?? data.pubDatetime),
-    })),
+    items: buildRssItems(sortedPosts, (id, filePath) =>
+      getPostUrl(id, filePath, config.site.lang)
+    ),
   });
 }
