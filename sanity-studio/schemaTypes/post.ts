@@ -10,7 +10,7 @@ export default defineType({
     defineField({ name: 'description', type: 'text', validation: r => r.required() }),
     defineField({ name: 'pubDatetime', type: 'datetime', initialValue: () => new Date().toISOString(), validation: r => r.required() }),
     defineField({ name: 'modDatetime', type: 'datetime' }),
-    defineField({ name: 'author', type: 'string', initialValue: 'Ravi' }),
+    defineField({ name: 'author', type: 'string', initialValue: 'Ravi Baskaran' }),
     defineField({ name: 'featured', type: 'boolean', initialValue: false }),
     defineField({ name: 'tags', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
     defineField({ name: 'ogImage', type: 'image', options: { hotspot: true } }),

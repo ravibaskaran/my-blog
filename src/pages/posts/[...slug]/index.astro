@@ -5,9 +5,12 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
+import AuthorBio from "@/components/AuthorBio.astro";
+import RelatedReading from "@/components/RelatedReading.astro";
 import { getPostSlug, getPostUrl } from "@/utils/getPostPaths";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyStr } from "@/utils/slugify";
+import { authorProfile } from "@/data/author.js";
 import EditPost from "./_components/EditPost.astro";
 import ShareLinks from "./_components/ShareLinks.astro";
 import BackButton from "./_components/BackButton.astro";
@@ -39,6 +42,27 @@ export async function getStaticPaths() {
               filePath: sortedPosts[index + 1].filePath,
             }
           : null,
+      relatedPosts: sortedPosts
+        .filter(candidate => candidate.id !== post.id)
+        .map(candidate => {
+          const currentTags = new Set(post.data.tags ?? []);
+          const sharedTags = (candidate.data.tags ?? []).filter(tag =>
+            currentTags.has(tag)
+          ).length;
+
+          return {
+            title: candidate.data.title,
+            url: getPostUrl(candidate.id, candidate.filePath, config.site.lang),
+            sharedTags,
+            pubDatetime: candidate.data.pubDatetime.getTime(),
+          };
+        })
+        .filter(candidate => candidate.sharedTags > 0)
+        .sort(
+          (a, b) => b.sharedTags - a.sharedTags || b.pubDatetime - a.pubDatetime
+        )
+        .slice(0, 3)
+        .map(({ title, url }) => ({ title, url })),
     },
   }));
 }
@@ -53,9 +77,13 @@ type Props = {
   post: CollectionEntry<"posts">;
   prevPost: AdjacentPost;
   nextPost: AdjacentPost;
+  relatedPosts: {
+    title: string;
+    url: string;
+  }[];
 };
 
-const { post, prevPost, nextPost } = Astro.props;
+const { post, prevPost, nextPost, relatedPosts } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
 
 const {
@@ -108,6 +136,34 @@ const articleSourceLabel = articleSourceUrl
       }
     })()
   : "";
+const articleUrl = new URL(
+  canonicalURL ?? getPostUrl(post.id, post.filePath, locale),
+  config.site.url
+).href;
+const breadcrumbStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: new URL("/", config.site.url).href,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Posts",
+      item: new URL("/posts/", config.site.url).href,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: title,
+      item: articleUrl,
+    },
+  ],
+};
 ---
 
 <PostLayout
@@ -117,7 +173,16 @@ const articleSourceLabel = articleSourceUrl
   canonicalURL={canonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
+  tags={tags}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(breadcrumbStructuredData)}
+    />
+  </Fragment>
+
   <Header />
 
   <BackButton />
@@ -133,6 +198,18 @@ const articleSourceLabel = articleSourceUrl
     >
       {title}
     </h1>
+
+    <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
+      <a
+        href={authorProfile.profilePath}
+        rel="author"
+        class="text-accent underline underline-offset-4 transition-colors hover:opacity-80"
+      >
+        {authorProfile.name}
+      </a>
+      <span class="text-muted-foreground">|</span>
+      <span class="text-muted-foreground">{authorProfile.title}</span>
+    </div>
 
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
@@ -189,6 +266,10 @@ const articleSourceLabel = articleSourceUrl
         </p>
       )
     }
+
+    <AuthorBio />
+
+    <RelatedReading posts={relatedPosts} />
 
     <hr class="my-8 border-dashed" />
 

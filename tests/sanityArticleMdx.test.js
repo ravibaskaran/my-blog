@@ -34,12 +34,12 @@ import {buildSanityArticleMdx} from "../src/utils/sanityArticleMdx.js";
       title: "Plain post",
       description: "No source URL",
       pubDatetime: "2026-05-21T12:00:00.000Z",
-      author: "Admin",
       tags: [],
     },
     "<p>Body</p>"
   );
 
+  assert.match(mdx, /author: "Ravi Baskaran"/);
   assert.ok(!mdx.includes("articleSourceUrl:"));
 }
 

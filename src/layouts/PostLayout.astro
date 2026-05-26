@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import config from "@/config";
+import { authorProfile } from "@/data/author.js";
 
 type Props = {
   title?: string;
@@ -9,27 +10,61 @@ type Props = {
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  tags?: string[];
 };
 
 const { site } = config;
 
-const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
-  Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  canonicalURL,
+  pubDatetime,
+  modDatetime,
+  tags = [],
+} = Astro.props;
+
+const resolvedPageUrl = new URL(canonicalURL ?? Astro.url.pathname, site.url)
+  .href;
+const authorUrl = new URL(authorProfile.profilePath, site.url).href;
+const authorImageUrl = new URL(authorProfile.image, site.url).href;
+const publisherLogoUrl = new URL("/favicon.svg", site.url).href;
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: title ?? site.title,
+  description: description ?? site.description,
+  url: resolvedPageUrl,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": resolvedPageUrl,
+  },
   image: ogImage,
+  inLanguage: site.lang,
+  ...(tags.length > 0 && { keywords: tags.join(", ") }),
   ...(pubDatetime && { datePublished: pubDatetime.toISOString() }),
   ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: site.author,
-      ...(site.profile && { url: site.profile }),
+  author: {
+    "@type": "Person",
+    name: authorProfile.name,
+    url: authorUrl,
+    image: authorImageUrl,
+    description: authorProfile.summary,
+    email: authorProfile.email,
+    jobTitle: authorProfile.title,
+    sameAs: authorProfile.sameAs,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: site.title,
+    url: site.url,
+    logo: {
+      "@type": "ImageObject",
+      url: publisherLogoUrl,
     },
-  ],
+  },
 };
 ---
 

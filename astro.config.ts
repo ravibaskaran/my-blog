@@ -16,6 +16,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
+import { rehypeExternalLinks } from "./src/utils/externalLinks.js";
 
 export default defineConfig({
   site: config.site.url,
@@ -35,6 +36,7 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    rehypePlugins: [[rehypeExternalLinks, { siteUrl: config.site.url }]],
     shikiConfig: {
       themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,

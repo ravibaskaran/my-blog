@@ -1,0 +1,55 @@
+---
+import config from "@/config";
+import { authorProfile } from "@/data/author.js";
+
+const aboutUrl = new URL(authorProfile.profilePath, config.site.url).href;
+const imageUrl = new URL(authorProfile.image, config.site.url).href;
+---
+
+<aside
+  class="not-prose border-border bg-muted/20 mt-10 rounded-2xl border p-5 sm:p-6"
+>
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+    <img
+      src={imageUrl}
+      alt="Hand-drawn portrait of Ravi Baskaran"
+      class="border-border bg-background h-24 w-24 rounded-2xl border object-contain shadow-sm sm:h-28 sm:w-28"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="min-w-0 flex-1">
+      <p class="text-muted-foreground text-sm tracking-wide uppercase">
+        About the author
+      </p>
+      <h2 class="text-foreground mt-1 text-xl font-semibold">Ravi Baskaran</h2>
+      <p class="text-muted-foreground mt-3 leading-7">
+        {authorProfile.summary}
+      </p>
+      <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        <a
+          href={aboutUrl}
+          rel="author"
+          class="text-accent underline underline-offset-4 transition-colors hover:opacity-80"
+        >
+          Read the full bio
+        </a>
+        <a
+          href="https://linkedin.com/in/brkumar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline underline-offset-4 transition-colors hover:opacity-80"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://x.com/ravibaskaran"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline underline-offset-4 transition-colors hover:opacity-80"
+        >
+          X
+        </a>
+      </div>
+    </div>
+  </div>
+</aside>

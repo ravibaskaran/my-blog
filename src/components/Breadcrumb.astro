@@ -55,6 +55,97 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     }`
   );
 }
+
+const breadcrumbSchemaItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: t.nav.home,
+    item: new URL(getRelativeLocaleUrl(locale, ""), config.site.url).href,
+  },
+];
+
+if (currentUrlPath === "/about") {
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name: t.nav.about,
+    item: new URL(getRelativeLocaleUrl(locale, "about"), config.site.url).href,
+  });
+}
+
+if (currentUrlPath === "/archives") {
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name: t.nav.archives,
+    item: new URL(getRelativeLocaleUrl(locale, "archives"), config.site.url)
+      .href,
+  });
+}
+
+if (currentUrlPath === "/search") {
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name: t.nav.search,
+    item: new URL(getRelativeLocaleUrl(locale, "search"), config.site.url).href,
+  });
+}
+
+if (currentUrlPath === "/posts" || currentUrlPath.match(/^\/posts\/\d+$/)) {
+  const pageNumber = currentUrlPath.split("/")[2];
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name:
+      currentUrlPath === "/posts"
+        ? t.nav.posts
+        : `${t.nav.posts} (${t.pagination.page.toLowerCase()} ${pageNumber})`,
+    item: new URL(
+      getRelativeLocaleUrl(locale, currentUrlPath.replace(/^\//, "")),
+      config.site.url
+    ).href,
+  });
+}
+
+if (currentUrlPath === "/tags") {
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name: t.nav.tags,
+    item: new URL(getRelativeLocaleUrl(locale, "tags"), config.site.url).href,
+  });
+}
+
+if (currentUrlPath.startsWith("/tags/")) {
+  const segments = currentUrlPath.split("/").filter(Boolean);
+  const tagName = decodeSegment(segments[1] ?? "");
+  const pageNumber = segments[2];
+
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 2,
+    name: t.nav.tags,
+    item: new URL(getRelativeLocaleUrl(locale, "tags"), config.site.url).href,
+  });
+
+  breadcrumbSchemaItems.push({
+    "@type": "ListItem",
+    position: 3,
+    name:
+      pageNumber && !isNaN(Number(pageNumber))
+        ? `${tagName} (${t.pagination.page.toLowerCase()} ${pageNumber})`
+        : tagName,
+    item: new URL(
+      getRelativeLocaleUrl(
+        locale,
+        segments.slice(0, pageNumber ? 3 : 2).join("/")
+      ),
+      config.site.url
+    ).href,
+  });
+}
 ---
 
 <nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
@@ -95,4 +186,14 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
       )
     }
   </ul>
+
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbSchemaItems,
+    })}
+  />
 </nav>

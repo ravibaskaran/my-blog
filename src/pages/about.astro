@@ -6,6 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import config from "@/config";
+import { authorProfile } from "@/data/author.js";
 
 const about = await getEntry("pages", "about");
 
@@ -16,6 +17,27 @@ if (!about) {
 }
 
 const { Content } = await render(about);
+
+const authorUrl = new URL(authorProfile.profilePath, config.site.url).href;
+const authorImage = new URL(authorProfile.image, config.site.url).href;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: about.data.title,
+  url: new URL("/about/", config.site.url).href,
+  description: about.data.description,
+  mainEntity: {
+    "@type": "Person",
+    name: authorProfile.name,
+    url: authorUrl,
+    image: authorImage,
+    description: authorProfile.summary,
+    email: authorProfile.email,
+    jobTitle: authorProfile.title,
+    sameAs: authorProfile.sameAs,
+    knowsAbout: authorProfile.expertise,
+  },
+};
 ---
 
 <Layout
@@ -24,6 +46,14 @@ const { Content } = await render(about);
   ogImage={about.data.ogImage}
   canonicalURL={about.data.canonicalURL}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
   <Header />
 
   <Breadcrumb />

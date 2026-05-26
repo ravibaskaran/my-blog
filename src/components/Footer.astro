@@ -1,7 +1,9 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import Socials from "./Socials.astro";
 import { useTranslations } from "@/i18n";
+import config from "@/config";
 
 type Props = {
   noMarginTop?: boolean;
@@ -11,12 +13,35 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
 
 const t = useTranslations(Astro.currentLocale);
 const currentYear = new Date().getFullYear();
+const locale = Astro.currentLocale ?? config.site.lang;
 ---
 
 <footer
   class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
   {...attrs}
 >
+  <div
+    class="border-border flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t py-4 text-sm sm:justify-between"
+  >
+    <a
+      href={getRelativeLocaleUrl(locale, "about")}
+      class="text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+    >
+      About
+    </a>
+    <a
+      href={getRelativeLocaleUrl(locale, "privacy")}
+      class="text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+    >
+      Privacy
+    </a>
+    <a
+      href={getRelativeLocaleUrl(locale, "rss.xml")}
+      class="text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
+    >
+      RSS
+    </a>
+  </div>
   <div
     class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
   >

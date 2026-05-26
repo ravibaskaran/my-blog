@@ -1,12 +1,13 @@
 import { defineAstroPaperConfig } from "./src/types/config";
+import { authorProfile } from "./src/data/author.js";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://cranium-to-chops.pages.dev/",
+    url: "https://blog.tochops.in/",
     title: "Cranium to Chops",
     description: "Notes, essays, and experiments from Ravi Baskaran.",
-    author: "Ravi Baskaran",
-    profile: "https://cranium-to-chops.pages.dev/",
+    author: authorProfile.name,
+    profile: new URL(authorProfile.profilePath, "https://blog.tochops.in/").href,
     ogImage: "default-og.jpg",
     lang: "en",
     timezone: "Asia/Bangkok",

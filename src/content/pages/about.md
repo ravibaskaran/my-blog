@@ -19,6 +19,6 @@ I write here to capture what I am learning while building product, platform, and
 
 ## Contact
 
-- Email: [ravi.baskaran@caliverse.com](mailto:ravi.baskaran@caliverse.com)
+- Email: [ravi@tochops.in](mailto:ravi@tochops.in)
 - X: [@ravibaskaran](https://x.com/ravibaskaran)
 - LinkedIn: [linkedin.com/in/brkumar](https://linkedin.com/in/brkumar)

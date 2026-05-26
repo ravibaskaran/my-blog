@@ -13,7 +13,7 @@ I have spent over two decades architecting B2B platforms, securing 14 patents in
 
 ## Contact
 
-- Email: [ravi.baskaran@caliverse.com](mailto:ravi.baskaran@caliverse.com)
+- Email: [brkumar@gmail.com](mailto:brkumar@gmail.com)
 - LinkedIn: [linkedin.com/in/brkumar](https://linkedin.com/in/brkumar)
 - X: [@ravibaskaran](https://x.com/ravibaskaran)
 

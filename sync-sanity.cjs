@@ -39,12 +39,61 @@ const client = createClient({
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
-const myPortableTextComponents = {
-  types: {
-    image: ({ value }) =>
-      '<img src="' + urlFor(value).url() + '" alt="' + (value.alt || ' ') + '" />',
-  },
-};
+function sleep(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+function rmSyncWithRetry(target, options = {}, attempts = 12) {
+  let lastError;
+
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      fs.rmSync(target, options);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (!["EPERM", "EACCES", "EBUSY"].includes(error.code)) {
+        throw error;
+      }
+
+      if (i === attempts - 1) {
+        break;
+      }
+
+      sleep(100 * (i + 1));
+    }
+  }
+
+  throw lastError;
+}
+
+function removeDirectory(dir) {
+  if (!fs.existsSync(dir)) {
+    return;
+  }
+
+  try {
+    rmSyncWithRetry(
+      dir,
+      {
+        recursive: true,
+        force: true,
+      },
+      12
+    );
+    return;
+  } catch (error) {
+    if (error.code !== 'EPERM' && error.code !== 'EACCES' && error.code !== 'EBUSY') {
+      throw error;
+    }
+
+    console.warn(
+      "Skipping cleanup for " +
+        dir +
+        " because a file is locked. Existing generated files will be overwritten."
+    );
+  }
+}
 
 async function sync() {
   for (const key of ['SANITY_PROJECT_ID', 'SANITY_DATASET', 'SANITY_API_VERSION']) {
@@ -55,6 +104,9 @@ async function sync() {
 
   const { resolveLeadImageContent } = await import(
     pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityLeadImage.js')).href
+  );
+  const { createPortableTextComponents } = await import(
+    pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityPortableText.js')).href
   );
   const { buildSanityArticleMdx } = await import(
     pathToFileURL(path.join(__dirname, 'src', 'utils', 'sanityArticleMdx.js')).href
@@ -67,8 +119,13 @@ async function sync() {
     { dir: path.join(__dirname, 'src', 'content', 'posts', 'sanity'), documents: posts },
   ];
 
+  const myPortableTextComponents = createPortableTextComponents({
+    urlFor,
+    siteUrl: process.env.SITE_URL || 'https://blog.tochops.in/',
+  });
+
   for (const { dir, documents } of generatedDirs) {
-    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
+    removeDirectory(dir);
     fs.mkdirSync(dir, { recursive: true });
 
     for (const document of documents) {
@@ -87,7 +144,7 @@ async function sync() {
           description: document.description,
           pubDatetime: document.pubDatetime,
           modDatetime: document.modDatetime || document.pubDatetime,
-          author: document.author || 'Admin',
+          author: document.author || 'Ravi Baskaran',
           featured: document.featured || false,
           tags: document.tags || [],
           leadImage,

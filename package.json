@@ -7,9 +7,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "node sync-sanity.cjs && astro dev",
-    "build": "node sync-sanity.cjs && astro build",
-    "test": "node tests/sanityLeadImage.test.js && node tests/sanityArticleMdx.test.js",
+    "dev": "node sync-sanity.cjs && node --require ./scripts/no-net-use.cjs ./node_modules/astro/bin/astro.mjs dev",
+    "build": "node sync-sanity.cjs && node --require ./scripts/no-net-use.cjs ./node_modules/astro/bin/astro.mjs build",
+    "test": "node tests/sanityLeadImage.test.js && node tests/sanityArticleMdx.test.js && node tests/externalLinks.test.js && node tests/sanityPortableText.test.js",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",

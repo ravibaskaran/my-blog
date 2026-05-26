@@ -10,6 +10,7 @@ import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import { authorProfile } from "@/data/author.js";
 
 const { posts: postsConfig } = config;
 
@@ -21,9 +22,31 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 const homePath = getRelativeLocaleUrl(locale, "");
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: config.site.title,
+  url: config.site.url,
+  description: config.site.description,
+  inLanguage: config.site.lang,
+  publisher: {
+    "@type": "Person",
+    name: authorProfile.name,
+    url: new URL(authorProfile.profilePath, config.site.url).href,
+  },
+};
 ---
 
 <Layout>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
+  </Fragment>
+
   <Header />
   <main
     id="main-content"
